@@ -1,0 +1,18 @@
+{
+  "name": "task-manager",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "This is a basic task manager that will manage user's tasks. It will perform CRUD operations like `create`, `edit`, `list`, and `delete`.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "kodecamp",
+    "kodehouz",
+    "nodejs"
+  ],
+  "author": "Kodecamp",
+  "license": "ISC"
+}

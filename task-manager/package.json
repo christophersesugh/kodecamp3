@@ -5,12 +5,13 @@
   "description": "This is a basic task manager that will manage user's tasks. It will perform CRUD operations like `create`, `edit`, `list`, and `delete`.",
   "main": "src/index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/index.js",
+    "dev": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "kodecamp",
-    "kodehouz",
+    "kodehauz",
     "nodejs"
   ],
   "author": "Kodecamp",

@@ -1,14 +1,9 @@
 {
   "tasks": [
     {
-      "id": 4,
-      "title": "modified item",
-      "description": "Object.assign is superb"
-    },
-    {
-      "id": 4,
-      "title": "modified item",
-      "description": "this is is PATCH request"
+      "id": 3,
+      "title": "some task",
+      "description": "a new task"
     }
   ]
 }

@@ -1,6 +1,7 @@
 "use strict";
 import express from "express";
 import dotenv from "dotenv";
+import "express-async-errors";
 import task from "./routes/task.js";
 import { notFound } from "./middleware/not-found.js";
 import { errorHandler } from "./middleware/error-handler.js";

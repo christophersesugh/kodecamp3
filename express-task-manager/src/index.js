@@ -11,6 +11,7 @@ app.use(express.json());
 dotenv.config();
 const PORT = process.env.PORT;
 
+app.use((req, res) => "<h1>Task manager</h1>");
 app.use("/tasks", task);
 
 app.use(errorHandler);

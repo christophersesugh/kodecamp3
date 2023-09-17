@@ -5,7 +5,7 @@ function errorHandler(err, req, res) {
   if (err instanceof CustomErrorApi) {
     return res.status(err.statusCode).json({ message: err.message });
   }
-  return res
+  res
     .status(StatusCodes.INTERNAL_SERVER_ERROR)
     .json({ message: "Internal server error" });
 }

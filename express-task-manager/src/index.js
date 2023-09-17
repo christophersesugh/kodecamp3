@@ -12,7 +12,6 @@ dotenv.config();
 const PORT = process.env.PORT;
 
 app.use("/tasks", task);
-cosole.log(1);
 
 app.use(errorHandler);
 app.use(notFound);

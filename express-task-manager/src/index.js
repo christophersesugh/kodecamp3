@@ -17,7 +17,7 @@ dotenv.config();
 //Env variables
 const PORT = process.env.PORT;
 const DATABASE_URL = process.env.DATABASE_URL;
-const SESSION_SECRET = process.env.SESSION_SECRET;
+const SECRET = process.env.SECRET;
 
 const env = app.get("env") === "production";
 
@@ -34,7 +34,7 @@ const mongoStore = MongoStore.create({
  */
 const sessionOptions = {
   name: "KCTM_session",
-  secret: SESSION_SECRET,
+  secret: SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -50,7 +50,6 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use("/session-auth", sessionAuth);
 app.use("/token-auth", tokenAuth);
-
 app.use("/tasks", task);
 
 app.use(errorHandler);

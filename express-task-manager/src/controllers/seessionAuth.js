@@ -6,17 +6,6 @@ import { database } from "../libs/prisma.js";
 
 const register = asyncWrapper(async (req, res) => {
   const { username, password } = req.body;
-  if (!username || !password) {
-    throw new CustomErrorApi("Invalid credentials", StatusCodes.BAD_REQUEST);
-  }
-
-  if (username.length < 5) {
-    throw new CustomErrorApi("Username must be atleast 5 chars.");
-  }
-
-  if (password.length < 6) {
-    throw new CustomErrorApi("Password must be atleast 6 chars.");
-  }
   const oldUser = await database.user.findFirst({ where: { username } });
   if (oldUser) {
     throw new CustomErrorApi(
@@ -31,17 +20,13 @@ const register = asyncWrapper(async (req, res) => {
     select: { id: true, username: true },
   });
   req.session.user = user;
-  res.status(StatusCodes.CREATED).json({ message: "Registration successful." });
+  res
+    .status(StatusCodes.CREATED)
+    .json({ message: "Registration successful.", errors: null });
 });
 
 const login = asyncWrapper(async (req, res) => {
   const { username, password } = req.body;
-  if (!username || !password) {
-    throw new CustomErrorApi(
-      "Provide all input values.",
-      StatusCodes.BAD_REQUEST
-    );
-  }
   const oldUser = await database.user.findUnique({
     where: { username },
   });
@@ -58,12 +43,12 @@ const login = asyncWrapper(async (req, res) => {
     return { id: user.id, username: user.username };
   }
   req.session.user = serializeUser(oldUser);
-  res.status(StatusCodes.OK).json({ message: "Login success." });
+  res.status(StatusCodes.OK).json({ message: "Login success.", errors: null });
 });
 
 const me = asyncWrapper(async (req, res) => {
-  const { id, username } = req.session.user;
-  const tasks = await database.task.findMany({ where: { userId: id } });
+  const { id: userId, username } = req.user;
+  const tasks = await database.task.findMany({ where: { userId } });
   res.status(StatusCodes.OK).json({ user: { id, username, tasks } });
 });
 

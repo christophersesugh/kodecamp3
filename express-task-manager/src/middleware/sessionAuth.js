@@ -6,7 +6,7 @@ async function sessionAuth(req, res, next) {
     if (!req.session.user) {
       throw new CustomErrorApi("Unauthorized.", StatusCodes.UNAUTHORIZED);
     }
-    req.body.user = req.session.user;
+    req.user = req.session.user;
     next();
   } catch (error) {
     throw new CustomErrorApi("Unauthorized.", StatusCodes.UNAUTHORIZED);

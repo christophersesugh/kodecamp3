@@ -7,14 +7,26 @@ import {
   getTask,
   getTasks,
 } from "../controllers/task.js";
-import { sessionAuth } from "../middleware/sessionAuth.js";
+import { tokenAuth } from "../middleware/tokenAuth.js";
+import {
+  createTasksValidationRegister,
+  getTaskValidationRegister,
+  getTasksValidationRegister,
+  validateTask,
+} from "../middleware/taskValidator.js";
 
 const router = express.Router();
 
-router.get("/", sessionAuth, getTasks);
-router.get("/:id", sessionAuth, getTask);
-router.post("/", sessionAuth, createTask);
-router.patch("/:id", sessionAuth, editTask);
-router.delete("/:id", sessionAuth, deleteTask);
+router.get("/", tokenAuth, getTasksValidationRegister, validateTask, getTasks);
+router.get("/:id", tokenAuth, getTaskValidationRegister, validateTask, getTask);
+router.post(
+  "/",
+  tokenAuth,
+  createTasksValidationRegister,
+  validateTask,
+  createTask
+);
+router.patch("/:id", tokenAuth, editTask);
+router.delete("/:id", tokenAuth, deleteTask);
 
 export default router;

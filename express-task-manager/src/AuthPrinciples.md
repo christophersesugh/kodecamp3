@@ -1,4 +1,7 @@
-Authentication:
+# Authentication and authorization principles
+
+## Authentication
+
 Authentication is the process of verifying the identity of a user, ensuring that they are who they claim to be. In Express.js, you can implement authentication using various strategies. Here are the key components and strategies:
 
 1. **Middleware**: Middleware functions play a crucial role in authentication. You can use middleware to check if a user is authenticated before allowing access to certain routes or resources. Popular middleware for authentication includes Passport.js.
@@ -9,7 +12,8 @@ Authentication is the process of verifying the identity of a user, ensuring that
 
 4. **Local Authentication**: This is the basic form of authentication where users provide their username and password. Express can handle this using form submissions and middleware to verify credentials.
 
-Authorization:
+## Authorization
+
 Authorization defines what actions a user is allowed to perform once they are authenticated. It controls access to specific resources or routes. Here's how you can implement authorization in Express.js:
 
 1. **Role-based Access Control**: Assign roles to users (e.g., admin, regular user) and restrict access based on these roles. Middleware can check the user's role before allowing or denying access to certain routes.

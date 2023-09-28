@@ -38,6 +38,12 @@ Cross-Site Scripting (XSS) is a common web security vulnerability that occurs wh
     npm i express-xss-sanitizer
 ```
 
+For yarn users
+
+```bash
+yarn add express-xss-sanititzer
+```
+
 ```javascript
 import { xss } from "express-xss-sanitizer";
 

@@ -1,5 +1,8 @@
 "use strict";
 import express from "express";
+import helmet from "helmet";
+import { xss } from "express-xss-sanitizer";
+import rateLimit from "express-rate-limit";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import dotenv from "dotenv";
@@ -21,7 +24,11 @@ const SECRET = process.env.SECRET;
 
 const env = app.get("env") === "production";
 
-app.use("/", express.static("public"));
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: "Too many requests, check back in 5 minutes.",
+});
 
 //Mongo store
 const mongoStore = MongoStore.create({
@@ -47,7 +54,12 @@ const sessionOptions = {
 /**
  * Application level middleware
  */
+app.use(helmet());
+app.use(xss());
+app.use(limiter);
+app.use("/", express.static("public"));
 app.use(session(sessionOptions));
+
 app.use("/session-auth", sessionAuth);
 app.use("/token-auth", tokenAuth);
 app.use("/tasks", task);

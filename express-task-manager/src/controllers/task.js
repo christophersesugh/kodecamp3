@@ -5,12 +5,14 @@ import { asyncWrapper } from "../middleware/async-wrapper.js";
 
 const getTasks = asyncWrapper(async (req, res) => {
   const { id: userId } = req.user;
-  const { q, completed } = req.query;
+  const { page, sort, title, filter } = req.query;
+  const pageCount = parseInt(page);
+  const pageSize = 2;
+  const skip = (pageCount - 1) * pageSize;
+
   const tasks = await database.task.findMany({
-    where: {
-      userId,
-      OR: [{ title: q }, { completed: completed === "true" ? true : false }],
-    },
+    skip,
+    take: pageSize,
   });
   res.status(StatusCodes.OK).json({ tasks, errors: null });
 });

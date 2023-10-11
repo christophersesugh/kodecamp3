@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Websocket</title>
+  </head>
+  <body>
+    <input id="message" type="text" placeholder="type your message" />
+    <button id="messageButton">send</button>
+    <div id="chatDiv"></div>
+    <script>
+      const server = new WebSocket("ws://localhost:8080");
+      const chatInput = document.querySelector("#message");
+      const chatButton = document.querySelector("#messageButton");
+      const chatDiv = document.querySelector("#chatDiv");
+
+      chatButton.addEventListener("click", () => {
+        const message = chatInput.value;
+        server.send(message);
+        chatDiv.innerHTML += `<p style="background:red;color:white;border-radius:5px;padding:2px">${message}</p>`;
+        chatInput.value = "";
+      });
+      server.addEventListener("message", (event) => {
+        event.data
+          .text()
+          .then((text) => {
+            chatDiv.innerHTML += `<p style="background:blue;color:white;border-radius:5px;padding:2px">${text}</p>`;
+          })
+          .catch((error) => {
+            console.error("error converting blob to text");
+          });
+      });
+    </script>
+  </body>
+</html>

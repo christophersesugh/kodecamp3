@@ -96,7 +96,7 @@ Let's compare Websockets and HTTP to understand their differences and when to us
 
 3. **Latency**: HTTP can have higher latency compared to Websockets because of the overhead associated with establishing a new connection for each request.
 
-   > Latency refers to the delay or the amount of time it takes for data to travel from its source to its destination in a computer network or system. It is typically measured in milliseconds (ms) and represents the time it takes for a signal, packet, or request to travel from the sender to the receiver and receive a response.
+   Latency refers to the delay or the amount of time it takes for data to travel from its source to its destination in a computer network or system. It is typically measured in milliseconds (ms) and represents the time it takes for a signal, packet, or request to travel from the sender to the receiver and receive a response.
 
 4. **Caching**: HTTP includes caching mechanisms to reduce redundant data transfer, which can improve performance for static content.
 
